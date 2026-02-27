@@ -1,0 +1,62 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+df = pd.read_csv('./data/save_the_bees.csv')
+
+print(df.head())
+print(df.columns)
+#plotting average percent lost in last 8 states
+n = 8  # number of states you want to plot in bar graph
+last_states = states[-n:]
+
+for state in last_states:
+    state_data = df[df['state'] == state]
+    plt.bar(state_data['year'], state_data['percent_lost'], label=state)
+
+plt.xlabel('Year')
+plt.ylabel('Percent Lost')
+plt.title('Colony Loss Over Time for Last Few States')
+plt.legend()
+plt.show()
+
+#plotting total no. of colonies in first 5 states
+n = 5  # number of states you want to plot in bar graph
+first_states = states[:n]
+
+for state in first_states:
+    state_data = df[df['state'] == state]
+    plt.bar(state_data['year'], state_data['num_colonies'], label=state)
+
+plt.xlabel('Year')
+plt.ylabel('Total no. of colonies')
+plt.title('Total no. of colonies in first few States')
+plt.legend()
+plt.show()
+
+#plotting colony losses overtime in a line plot
+n = 8  # number of states you want to plot in bar graph
+first_states = states[:n]
+
+for state in first_states:
+    state_data = df[df['state'] == state]
+    plt.plot(state_data['year'], state_data['lost_colonies'], label=state)
+
+plt.xlabel('Year')
+plt.ylabel('Total no. Lost of colonies')
+plt.title('Total no. of colonies lost in first few States')
+plt.legend()
+plt.show()
+
+#percent lost vs varroa mites in scatter plot
+n = 8  # number of states you want to plot in bar graph
+first_states = states[:n]
+
+for state in first_states:
+    state_data = df[df['state'] == state]
+    plt.scatter(state_data['percent_lost'], state_data['varroa_mites'], label=state)
+
+plt.xlabel('Percent Lost')
+plt.ylabel('Varroa Mites')
+plt.title('Percent Lost vs Varroa Mites')
+plt.legend()
+plt.show()
